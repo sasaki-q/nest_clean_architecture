@@ -9,7 +9,7 @@ export class UserController {
     ){}
 
     @Get("/")
-    async getAll(): Promise<User> {
+    async getAll(): Promise<User[]> {
         return await this.userService.getAll();
     }
 }

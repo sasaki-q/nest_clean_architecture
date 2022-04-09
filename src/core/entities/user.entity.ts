@@ -15,7 +15,7 @@ export class User {
         name: "age",
         nullable: false,
     })
-    age: string
+    age: number
 
     @Column({
         type: String,

@@ -9,10 +9,10 @@ export class UserService {
     ){}
 
     async getAll(): Promise<User[]> {
-        try{
-            return await this.userDataService.getAll();
-        }catch(err){
-            throw new InternalServerErrorException()
-        }
+        return await this.userDataService.getAll();
+    }
+
+    async create(user: User): Promise<User>{
+        return await this.userDataService.create(user);
     }
 }

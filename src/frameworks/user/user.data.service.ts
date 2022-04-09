@@ -12,11 +12,10 @@ export class UserDataService implements UserRepository {
     ){}
 
     async getAll(): Promise<User[]> {
-        try{
-            return await this.userRepo.find();
-        }catch(err){
-            mylog(`DEBUG error message === ${err}`)
-            throw new InternalServerErrorException();
-        }
+        return await this.userRepo.find();
+    }
+
+    async create(user: User): Promise<User> {
+        return await this.userRepo.save(user);
     }
 }

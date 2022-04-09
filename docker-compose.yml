@@ -1,16 +1,6 @@
 version: '3'
 
 services:
-  db:
-    image: postgres:13
-    container_name: db
-    ports:
-      - 65433:5432
-    environment:
-      POSTGRES_DB: test
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-
   api: 
     container_name: api
     build:
@@ -21,5 +11,16 @@ services:
       - 8000:8000
     restart: always
     volumes:
-      - ./:/app/
-    command: bash -c "npm run start:dev"
+      - type: bind
+        source: .
+        target: /api
+
+  postgresql:
+    image: postgres:13
+    container_name: db
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres

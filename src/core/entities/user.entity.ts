@@ -2,33 +2,37 @@ import {
     Entity, 
     PrimaryGeneratedColumn, 
     Column,
-    CreateDateColumn, 
+    CreateDateColumn,
+    Index,
+    Unique,
 } from "typeorm"
 
 @Entity({name: "users"})
+@Index(["name"], {unique: true})
 export class User {
     @PrimaryGeneratedColumn()
     id: number
 
     @Column({
-        type: Number,
+        type: "int",
         name: "age",
         nullable: false,
     })
     age: number
 
     @Column({
-        type: String,
+        type: "varchar",
         name: "name",
+        unique: true,
         nullable: false,
     })
     name: string
 
     @CreateDateColumn({
-        type: Date,
+        type: "timestamp",
         name: "created_at",
         nullable: false,
-        default: new Date(),
+        default: () => 'CURRENT_TIMESTAMP(6)',
     })
     createdAt: Date
 }

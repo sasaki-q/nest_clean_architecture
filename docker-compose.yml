@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:13
+    container_name: db
+    ports:
+      - 65433:5432
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  api: 
+    container_name: api
+    build:
+      context: .
+      dockerfile: ./dockerfile
+    tty: true
+    ports:
+      - 8000:8000
+    restart: always
+    volumes:
+      - ./:/app/
+    command: bash -c "npm run start:dev"

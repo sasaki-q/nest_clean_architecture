@@ -8,19 +8,10 @@ services:
       dockerfile: ./dockerfile
     tty: true
     ports:
-      - 8000:8000
+      - 8080:8080
     restart: always
     volumes:
       - type: bind
         source: .
         target: /api
-
-  postgresql:
-    image: postgres:13
-    container_name: db
-    ports:
-      - 5432:5432
-    environment:
-      POSTGRES_DB: test
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+    command: sh -c "npm run start:dev"

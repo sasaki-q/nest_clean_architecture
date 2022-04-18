@@ -10,4 +10,4 @@ RUN npm ci
 
 COPY . .
 
-EXPOSE 8000
+EXPOSE 8080
